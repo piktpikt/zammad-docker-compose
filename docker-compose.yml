@@ -93,13 +93,15 @@ services:
     image: memcached:${MEMCACHE_VERSION:-1.6.39-alpine}
     restart: ${RESTART:-always}
 
-  zammad-nginx:
+zammad-nginx:
     <<: *zammad-service
     command: ["zammad-nginx"]
     expose:
       - "${NGINX_PORT:-8080}"
     ports:
       - "${NGINX_EXPOSE_PORT:-8081}:${NGINX_PORT:-8080}"
+    volumes:
+      - ./nginx-custom.conf:/etc/nginx/sites-enabled/default:ro
     depends_on:
       - zammad-railsserver
 
