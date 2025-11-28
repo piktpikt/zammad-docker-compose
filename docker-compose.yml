@@ -93,7 +93,7 @@ services:
     image: memcached:${MEMCACHE_VERSION:-1.6.39-alpine}
     restart: ${RESTART:-always}
 
-zammad-nginx:
+  zammad-nginx:
     <<: *zammad-service
     command: ["zammad-nginx"]
     expose:
